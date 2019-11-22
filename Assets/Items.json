@@ -1,0 +1,22 @@
+{
+	"Items": [
+		{
+			"Name": "Sword",
+			"Description": "Slashy thing that does cause hurt",
+			"MinDamage": 1,
+			"MaxDamage": 3,
+			"DropRate" : 1,
+			"OnUse": [],
+			"StatusEffects": []
+		},
+		{
+			"Name": "Axe",
+			"Description": "Dont drop on foot",
+			"MinDamage": 3,
+			"MaxDamage": 5,
+			"DropRate" : 1,
+			"OnUse": [],
+			"StatusEffects": []
+		}
+	]
+}
