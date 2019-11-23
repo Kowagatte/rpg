@@ -5,6 +5,7 @@ using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Inventory.Data;
+using Keys = JsonKeys.JsonKeys;
 
 
 public enum DropRate { Trash, Common, Unique, Rare, Legendary };
@@ -19,7 +20,7 @@ public static class ItemLoader
 	public static void Init()
 	{
 		if (string.IsNullOrEmpty(path)) path = Path.Combine(Application.dataPath, "Items.json");
-		if ( initialized  ||!File.Exists(path)) return;
+		if (initialized || !File.Exists(path)) return;
 		JObject parsedJson = JObject.Parse(File.ReadAllText(path));
 		JArray array = parsedJson["Items"] as JArray;
 		data = new ItemData[array.Count];
@@ -32,12 +33,25 @@ public static class ItemLoader
 		int count = 0;
 		foreach (var val in array)
 		{
-			data[count] = new ItemData(val);
+			switch ((ItemType)val[Keys.KEY_ITEMTYPE].Value<int>())
+			{
+				case ItemType.Consumable:
+					data[count] = new ConsumableData(val);
+					break;
+				case ItemType.Equipable:
+					data[count] = new EquipmentData(val);
+					break;
+			}
+			Debug.Log(data[count]);
 			dropTable[data[count].DropRate].Add(data[count]);
 			count++;
 		}
 		initialized = true;
-		Debug.Log(GetFromDropTable(DropRate.Common));
+	}
+
+	public static void ClearInventory(){
+		initialized = false;
+		dropTable.Clear();
 	}
 
 

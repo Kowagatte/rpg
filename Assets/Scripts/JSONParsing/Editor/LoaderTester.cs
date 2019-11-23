@@ -4,6 +4,7 @@ public static class LoaderTester{
 
 	[MenuItem("JsonTester/LoadItems")]
 	private static void LoadItems(){
+		ItemLoader.ClearInventory();
 		ItemLoader.Init();
 	}
 }
