@@ -97,7 +97,7 @@ MonoBehaviour:
     value: 1
   DepthMask:
     overrideState: 1
-    value: 1
+    value: 0
   DepthMaskContrast:
     overrideState: 1
     value: 214
