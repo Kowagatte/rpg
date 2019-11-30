@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class NetworkingUI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	public void HostServer()
+	{
+		Networker.HostServer();
+	}
+	public void JoinServer()
+	{
+		Networker.JoinServer();
+	}
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	void Update()
+	{
+		if (Networker.IsConnected) Networker.Poll();
+	}
+
+	void OnApplicationQuit()
+	{
+		Networker.Disconnect();
+	}
+
 }

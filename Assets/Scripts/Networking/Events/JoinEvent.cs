@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using LiteNetLib.Utils;
+using LiteNetLib;
 
 
 public class JoinEvent : INetworkEvent
 {
 	public NetworkEvents ID => NetworkEvents.Testing;
-	private string value = "See!";
+	private string value = "Hi Gary, this is a networked message";
 
 	public bool TryAddPacket(NetDataWriter writer)
 	{
@@ -16,13 +17,13 @@ public class JoinEvent : INetworkEvent
 		return true;
 	}
 
-	public void ReadPacket(NetDataReader reader)
+	public void ReadPacket(NetPacketReader reader)
 	{
 		value = reader.GetString();
 	}
 
 	public void Invoke(){
-		Debug.Log("Invoked!");
+		Debug.Log(value);
 	}
 
 

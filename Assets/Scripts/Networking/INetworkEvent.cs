@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using LiteNetLib.Utils;
+using LiteNetLib;
 
 public interface INetworkEvent
 {
@@ -17,6 +18,6 @@ public interface INetworkEvent
 	/// Reads packet from writer
 	/// </summary>
 	/// <param name="reader"></param>
-	void ReadPacket(NetDataReader reader);
+	void ReadPacket(NetPacketReader reader);
 	void Invoke();
 }
