@@ -1,0 +1,33 @@
+{
+	"Items": [
+		{
+			"Name": "Sword",
+			"ItemType" : 1,
+			"EquipType" : 0,
+			"Description": "Slashy thing that does cause hurt",
+			"Prefab" : "/Weapons/Sword.fbx",
+			"Damage": "1:5",
+			"DropRate" : 1,
+			"StatusEffects": []
+		},
+		{
+			"Name": "Axe",
+			"ItemType" : 1,
+			"EquipType" : 1,
+			"Description": "Dont drop on foot",
+			"Prefab" : "/Weapons/Axe.fbx",
+			"Damage": "7:10",
+			"DropRate" : 1,
+			"StatusEffects": []
+		},
+		{
+			"Name": "Healing Potion",
+			"ItemType" : 0,
+			"EquipType" : 1,
+			"Description": "Heals, what did you think.",
+			"Prefab" : "/Potions.fbx",
+			"DropRate" : 1,
+			"OnUse": []
+		}
+	]
+}
