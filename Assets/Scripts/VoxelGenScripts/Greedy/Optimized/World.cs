@@ -18,7 +18,7 @@ public class World : MonoBehaviour
     //public List<Chunk> chunk = new List<Chunk>(16);
     public ConcurrentDictionary<WorldPos, Chunk> chunks = new ConcurrentDictionary<WorldPos, Chunk>();
 
-    private Vector3Int size = new Vector3Int(8,1,8);
+    [SerializeField] private Vector3Int size = new Vector3Int(8,1,8);
 
     private int chunkCount = 0;
 
@@ -46,6 +46,7 @@ public class World : MonoBehaviour
                     //chunker.SetBlock(new Vector3Int(0, 0, 0), new Block(BlockTypes.Grass, 0));
                     Block grassBlock = new Block(BlockTypes.Grass, 0);
                     Block dirtBlock = new Block(BlockTypes.Dirt, 0);
+                    Block stoneBlock = new Block(BlockTypes.Stone, 0);
 
                     for(int i = 0; i < Chunk.Dimensions.x; i++)
                     {
@@ -53,14 +54,23 @@ public class World : MonoBehaviour
                         {
                             for (int k = 0; k < Chunk.Dimensions.z; k++)
                             {
-                                if(i == 0 || j == 0 || k == 0 )
+                                if((i == 0 || j == 0 || k == 0) || (i==Chunk.Dimensions.x-1 || k==Chunk.Dimensions.z-1))
                                 {
                                     chunker.SetBlock(new Vector3Int(i, j, k), grassBlock);
                                 }
-                                else if(i > 32)
+                                else if(i % 10 == 0 && j % 3 == 0)
                                 {
-                                    chunker.SetBlock(new Vector3Int(i, j, k), dirtBlock);
+                                    chunker.SetBlock(new Vector3Int(i, j, k), grassBlock);
+
                                 }
+                                // else if(i <= 24 || j <= 24 || k <= 24)
+                                // {
+                                //     chunker.SetBlock(new Vector3Int(i, j, k), dirtBlock);
+                                // }
+                                // else
+                                // {
+                                //     chunker.SetBlock(new Vector3Int(i, j, k), stoneBlock);
+                                // }
                                 
                             }
                         }

@@ -12,12 +12,13 @@ GameObject:
   - component: {fileID: 8136266024683010419}
   - component: {fileID: 2703005734312851074}
   - component: {fileID: 6183088584288289125}
+  - component: {fileID: 3595089297642120665}
   m_Layer: 0
   m_Name: Chunk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967294
   m_IsActive: 1
 --- !u!4 &2332398511029176615
 Transform:
@@ -66,7 +67,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_MotionVectors: 2
+  m_MotionVectors: 0
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 1
@@ -93,3 +94,15 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &3595089297642120665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1116188393630657725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7366cfb30d2b8fd41900e0125e0a93a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
