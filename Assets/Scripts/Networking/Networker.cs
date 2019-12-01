@@ -1,11 +1,14 @@
 ﻿using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Reflection;
 using LiteNetLib;
 using LiteNetLib.Utils;
+using System.Linq;
 public static class Networker
 {
-	private static Dictionary<NetworkEvents, INetworkEvent> idToEvent = new Dictionary<NetworkEvents, INetworkEvent>();
+	private static Dictionary<NetworkEvents, Type> idToEvent = new Dictionary<NetworkEvents, Type>();
 	private static NetManager client;
 	private static NetManager server;
 	private static Queue<INetworkEvent> packetsToSend = new Queue<INetworkEvent>();
@@ -29,7 +32,10 @@ public static class Networker
 		client.Start();
 		client.Connect("127.0.0.1", 3213, "");
 		IsConnected = true;
-		AddPacket(new JoinEvent());
+		JoinEvent join = new JoinEvent();
+		join.value = "Hi jerry, this is your captain speaking.";
+		Networker.AddPacket(join);
+
 		IsServer = false;
 	}
 
@@ -81,9 +87,31 @@ public static class Networker
 	private static void Initialize()
 	{
 		if (initialized) return;
-		idToEvent.Add(NetworkEvents.Testing, new JoinEvent());
+		Assembly[] assems = AppDomain.CurrentDomain.GetAssemblies();
+		foreach (Assembly assembly in assems)
+		{
+			foreach (Type t in assembly.GetTypes())
+			{
+				if (typeof(INetworkEvent).IsAssignableFrom(t))
+				{
+					var attr = (NetworkEvent[])t.GetCustomAttributes(typeof(NetworkEvent), false);
+					if (attr.Length == 0 || idToEvent.ContainsKey(attr[0].Event)) continue;
+					idToEvent.Add(attr[0].Event, t);
+				}
+			}
+		}
 		initialized = true;
 	}
+
+	private static void DoEvent(NetPacketReader reader)
+	{
+		NetworkEvents evt = (NetworkEvents)reader.GetByte();
+		if (!idToEvent.ContainsKey(evt)) return;
+		INetworkEvent netEvent = (INetworkEvent)Activator.CreateInstance(idToEvent[evt]);
+		netEvent.ReadPacket(reader);
+		netEvent.Invoke();
+	}
+
 
 	private static void OnNetworkRecieve(NetPeer peer, NetPacketReader reader, DeliveryMethod deliveryMethod)
 	{
@@ -95,10 +123,7 @@ public static class Networker
 		int packetCount = reader.GetInt();
 		for (int i = 0; i < packetCount; i++)
 		{
-			NetworkEvents id = (NetworkEvents)reader.GetByte();
-			//replace the following by instanting a new value
-			idToEvent[id].ReadPacket(reader);
-			idToEvent[id].Invoke();
+			DoEvent(reader);
 		}
 	}
 
