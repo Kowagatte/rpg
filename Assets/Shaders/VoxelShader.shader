@@ -25,6 +25,7 @@
 
             #pragma target 5.0
 
+            #pragma multi_compile _ SHADOWS_SCREEN
             #pragma multi_compile _ VERTEXLIGHT_ON
             
             #pragma vertex vert
@@ -51,7 +52,7 @@
 
             #pragma target 5.0
 
-            #pragma multi_compile_fwdadd
+            #pragma multi_compile_fwdadd_fullshadows
 
             #pragma vertex vert
             #pragma fragment frag

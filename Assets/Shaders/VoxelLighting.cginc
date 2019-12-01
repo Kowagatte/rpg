@@ -17,7 +17,7 @@ struct appdata
 
 struct v2f
 {
-    float4 vertex : SV_POSITION;
+    float4 pos : SV_POSITION;
     float2 uv : TEXCOORD0;
     float3 normal : TEXCOORD1;
 
@@ -30,8 +30,10 @@ struct v2f
 
     float3 worldPos : TEXCOORD4;
 
+    SHADOW_COORDS(5)
+
     #if defined(VERTEXLIGHT_ON)
-        float3 vertexLightColor : TEXCOORD5;
+        float3 vertexLightColor : TEXCOORD6;
     #endif
 };
 
@@ -66,7 +68,7 @@ float3 CreateBinormal(float3 normal, float3 tangent, float binormalSign)
 v2f vert (appdata v)
 {
     v2f o;
-    o.vertex = UnityObjectToClipPos(v.vertex);
+    o.pos = UnityObjectToClipPos(v.vertex);
     o.worldPos = mul(unity_ObjectToWorld, v.vertex);
     o.uv = TRANSFORM_TEX(v.uv, _MainTex);
     o.normal = UnityObjectToWorldNormal(v.normal);
@@ -77,6 +79,9 @@ v2f vert (appdata v)
         o.tangent = UnityObjectToWorldDir(v.tangent.xyz);
         o.binormal = CreateBinormal(o.normal, o.tangent, v.tangent.w);
     #endif
+
+    TRANSFER_SHADOW(o);
+
     ComputeVertexLightColor(o);
 
     return o;
@@ -91,7 +96,8 @@ UnityLight CreateLight (v2f i)
         light.dir = _WorldSpaceLightPos0.xyz;
     #endif
 
-    UNITY_LIGHT_ATTENUATION(attenuation, 0, i.worldPos);
+    UNITY_LIGHT_ATTENUATION(attenuation, i, i.worldPos);
+
     light.color = _LightColor0.rgb * attenuation;
 
     return light;
