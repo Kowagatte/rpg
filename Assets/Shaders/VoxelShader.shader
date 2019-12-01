@@ -4,6 +4,8 @@
     {
         _MainTex ("Texture", 2D) = "white" {}
         _Tint ("Tint", Color) = (1,1,1,1)
+        [NoScaleOffset] _NormalMap ("Normals", 2D) = "bump" {}
+        _BumpScale ("Bump Scale", Float) = 1
         _SpecularTint ("Specular", Color) = (0.5, 0.5, 0.5)
         [Gamma] _Metallic("Metallic", Range(0,1)) = 0
         _Smoothness("Smoothness", Range(0,1)) = 0.5
@@ -57,6 +59,25 @@
             #include "VoxelLighting.cginc"
 
             ENDCG
+        }
+
+        Pass
+        {
+            Tags
+            {
+                "LightMode" = "ShadowCaster"
+            }
+            CGPROGRAM
+
+            #pragma target 5.0
+
+            #pragma vertex vert
+            #pragma fragment frag
+
+            #include "MyShadows.cginc"
+
+            ENDCG
+            
         }
     }
 }
