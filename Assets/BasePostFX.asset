@@ -67,6 +67,7 @@ MonoBehaviour:
   - {fileID: 5567092623910016375}
   - {fileID: 7344183886456437616}
   - {fileID: 1027008155669632962}
+  - {fileID: 3120632448372327058}
 --- !u!114 &1027008155669632962
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -79,25 +80,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bdb2c81a0c539a4c9f26eddc4d453af, type: 3}
   m_Name: AnamorphicSharpen
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   enabled:
     overrideState: 1
     value: 1
   Strength:
     overrideState: 1
-    value: 35.7
+    value: 3
   Offset:
     overrideState: 1
-    value: 0.14
+    value: 0.665
   Clamp:
     overrideState: 1
-    value: 0.594
+    value: 0.559
   UseMask:
     overrideState: 1
     value: 1
   DepthMask:
     overrideState: 1
-    value: 1
+    value: 0
   DepthMaskContrast:
     overrideState: 1
     value: 214
@@ -151,6 +152,28 @@ MonoBehaviour:
   dirtIntensity:
     overrideState: 0
     value: 0
+--- !u!114 &3120632448372327058
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b94fcd11afffcb142908bfcb1e261fba, type: 3}
+  m_Name: MotionBlur
+  m_EditorClassIdentifier: 
+  active: 0
+  enabled:
+    overrideState: 1
+    value: 1
+  shutterAngle:
+    overrideState: 1
+    value: 135
+  sampleCount:
+    overrideState: 1
+    value: 32
 --- !u!114 &5567092623910016375
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -206,7 +229,7 @@ MonoBehaviour:
     value: {x: 0.5, y: 0.5}
   intensity:
     overrideState: 1
-    value: 0
+    value: 0.228
   smoothness:
     overrideState: 1
     value: 0.2
