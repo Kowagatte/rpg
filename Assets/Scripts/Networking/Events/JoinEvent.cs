@@ -4,11 +4,12 @@ using UnityEngine;
 using LiteNetLib.Utils;
 using LiteNetLib;
 
-
-public class JoinEvent : INetworkEvent
+[NetworkEvent(NetworkEvents.Testing)]
+public struct JoinEvent : INetworkEvent
 {
 	public NetworkEvents ID => NetworkEvents.Testing;
-	private string value = "Hi Gary, this is a networked message";
+	public string value;
+
 
 	public bool TryAddPacket(NetDataWriter writer)
 	{
@@ -22,7 +23,8 @@ public class JoinEvent : INetworkEvent
 		value = reader.GetString();
 	}
 
-	public void Invoke(){
+	public void Invoke()
+	{
 		Debug.Log(value);
 	}
 
