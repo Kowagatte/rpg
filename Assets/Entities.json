@@ -1,0 +1,23 @@
+{
+	"Entities": [
+		{
+			"Name" : "Skeleton Soldier",
+			"Description" : "Brittle like Jason's reasoing",
+			"Prefab" : "/Entities/Skeleton",
+			"HP" : "40:50",
+			"Mana" : "0:5",
+			"Strength" : "10:13",
+			"Intellect" : "0:3",
+			"Constitution": "0:1",
+			"Dexterity" : "0:4",
+			"Scaling" :{
+				"HP" : 3,
+				"Mana" : 1,
+				"Strength" : 5,
+				"Intellect" : 1,
+				"Constitution" : 4,
+				"Dexterity" : 0
+			}
+		}
+	]
+}

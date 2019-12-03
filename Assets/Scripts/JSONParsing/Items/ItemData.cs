@@ -9,6 +9,7 @@ namespace Inventory.Data
 
 		public string Name { get; protected set; }
 		public string Description { get; protected set; }
+		public string Prefab{get;protected set;}
 		public ItemType ItemType { get; protected set; }
 		public DropRate DropRate = DropRate.Trash;
 
@@ -18,6 +19,7 @@ namespace Inventory.Data
 		{
 			Name = jToken[Keys.KEY_NAME].Value<string>();
 			Description = jToken[Keys.KEY_DESCRIPTION].Value<string>();
+			Prefab = jToken[Keys.KEY_PREFAB].Value<string>();
 			DropRate = (DropRate)jToken[Keys.KEY_DROPRATE].Value<int>();
 		}
 

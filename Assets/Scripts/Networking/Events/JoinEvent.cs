@@ -27,6 +27,4 @@ public struct JoinEvent : INetworkEvent
 	{
 		Debug.Log(value);
 	}
-
-
 }

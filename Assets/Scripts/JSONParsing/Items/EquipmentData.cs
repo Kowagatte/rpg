@@ -1,5 +1,6 @@
 using Newtonsoft.Json.Linq;
 using Keys = JsonKeys.JsonKeys;
+using Json.Data;
 namespace Inventory.Data
 {
 	public class EquipmentData : ItemData

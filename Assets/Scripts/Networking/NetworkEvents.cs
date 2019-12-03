@@ -4,5 +4,5 @@ using UnityEngine;
 
 public enum NetworkEvents : byte
 {
-	Testing = 0
+	Testing = 0,
 }

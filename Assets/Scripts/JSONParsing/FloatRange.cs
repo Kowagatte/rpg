@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Inventory.Data
+namespace Json.Data
 {
     public struct FloatRange{
 	public float Min;
