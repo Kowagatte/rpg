@@ -17,5 +17,6 @@ public class ExampleCamSine : MonoBehaviour
     {
         transform.position = startPosition + new Vector3(Mathf.Sin(speed * elapsed) * strength, 0f, 0f);
         elapsed += Time.deltaTime;
+        var vec3zero = structexample.NewZero;
     }
 }

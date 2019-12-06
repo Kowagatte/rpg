@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
-public static class MeshFilterExts {
+public static class MeshFilterExts 
+{
     public static void ApplyMeshData(this MeshFilter meshFilter, MeshData meshData) {
         meshFilter.mesh.Clear();
         meshFilter.mesh.vertices = meshData.Vertices;

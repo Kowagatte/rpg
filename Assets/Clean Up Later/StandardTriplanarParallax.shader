@@ -34,7 +34,7 @@ Shader "Standard Triplanar Parallax"
 
 
             CGPROGRAM
-            #pragma surface surf Standard vertex:vert fullforwardshadows addshadow
+            #pragma surface surf Standard vertex:vert 
 
             #pragma shader_feature _NORMALMAP
             #pragma shader_feature _OCCLUSIONMAP
@@ -43,6 +43,7 @@ Shader "Standard Triplanar Parallax"
             #pragma require 2darray
             #pragma target 5.0
             #include "UnityCG.cginc"
+            #include "UnityPBSLighting.cginc"
             // make fog work
             #pragma multi_compile_fog
 
@@ -89,9 +90,15 @@ Shader "Standard Triplanar Parallax"
             }
 
             UNITY_INSTANCING_BUFFER_START(Props)
-                UNITY_DEFINE_INSTANCED_PROP(float, _TextureIndex)
+            UNITY_DEFINE_INSTANCED_PROP(float, _TextureIndex)
 #define _TextureIndex_arr Props
             UNITY_INSTANCING_BUFFER_END(Props)
+
+            // float4 LightingCustomDiffuse_PrePass(SurfaceOutputStandard s, float3 lightDir, float atten)
+            // {
+            //     float ndotl = dot(s.Normal, lightDir);
+            //     return ndotl;
+            // }
 
             void surf(Input IN, inout SurfaceOutputStandard o)
             {

@@ -102,8 +102,10 @@ public class World : MonoBehaviour
 
         for (int i = 0; i < chunkCount; i++)
         {
-
-            chunkPrefabs[i].GetComponent<MeshFilter>().ApplyMeshData(chunkMeshes[i]);
+            var filter = chunkPrefabs[i].GetComponent<MeshFilter>();
+            filter.ApplyMeshData(chunkMeshes[i]);
+            //chunkPrefabs[i].GetComponent<MeshFilter>().ApplyMeshData(chunkMeshes[i]);
+            chunkPrefabs[i].GetComponent<MeshCollider>().sharedMesh = filter.sharedMesh;
         }
         sw.Stop();
         UnityEngine.Debug.Log(sw.ElapsedMilliseconds + "ms");
